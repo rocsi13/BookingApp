@@ -15,14 +15,14 @@
                     <thead class="table-light">
                     <tr>
                         <th>Hotel Name</th>
-                        <th>No of available rooms</th>
+                        <th>Distance from user</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each = "hotel : ${hotels}">
                         <td th:text = "${hotel.name}"></td>
-                        <td th:text = "${hotel.availableRoomCount}"></td>
+                        <td th:text = "${hotel.distance}"></td>
                         <td> <a class="btn btn-info" th:href="@{/booking}" role="button">Book a room</a></td>
                     </tr>
                     </tbody>

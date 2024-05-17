@@ -8,5 +8,6 @@ public interface HotelService {
     void saveHotel(Hotel hotel);
     Hotel findByName (String name);
     List<Hotel> findAll();
+    List<Hotel> findNearestHotel(double userLocationLatitude, double userLocationLongitude);
 
 }

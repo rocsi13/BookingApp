@@ -3,13 +3,21 @@ package booking.app.BookingApp.Controller;
 import booking.app.BookingApp.Model.Hotel;
 import booking.app.BookingApp.Model.User;
 import booking.app.BookingApp.Model.UserDto;
+import booking.app.BookingApp.Model.UserLocation;
+import booking.app.BookingApp.Repository.UserLocationRepository;
 import booking.app.BookingApp.Service.HotelService;
 import booking.app.BookingApp.Service.UserService;
+import com.maxmind.geoip2.record.Location;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 public class AuthController {
@@ -17,6 +25,8 @@ public class AuthController {
     private UserService userService;
     @Autowired
     private HotelService hotelService;
+    @Autowired
+    private UserLocationRepository userLocationRepository;
 
     public AuthController(UserService userService) {
         this.userService = userService;
@@ -72,6 +82,7 @@ public class AuthController {
     @RequestMapping(value = "/listHotels", method = RequestMethod.GET)
     public String listHotels(Model model){
         model.addAttribute("hotels", hotelService.findAll());
+
         System.out.println("Hotels");
         return "listHotels";
     }
@@ -102,5 +113,24 @@ public class AuthController {
         hotelService.saveHotel(hotel);
         return "redirect:/dashboard";
     }
+
+    @PostMapping("/userlocation")
+    public UserLocation updateUserLocation(@RequestBody Location request, Principal principal) {
+        User user = userService.findByEmail(principal.getName());
+        UserLocation location = new UserLocation();
+        location.setLatitude(request.getLatitude());
+        location.setLongitude(request.getLongitude());
+        location.setTimestamp(LocalDateTime.now());
+        return userLocationRepository.save(location);
+    }
+    @GetMapping("/listHotels")
+    public String getNearestHotel(@RequestParam double latitude, @RequestParam double longitude, Model model) {
+        List<Hotel> nearestHotel = hotelService.findNearestHotel(latitude, longitude);
+        model.addAttribute("hotels", nearestHotel);
+        return "listHotels";
+    }
+
+
+
 
 }

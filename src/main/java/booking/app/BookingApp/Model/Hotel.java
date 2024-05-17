@@ -24,18 +24,23 @@ public class Hotel {
     private String name;
 
     @Column
-    private String latitude;
+    private Double latitude;
 
     @Column
-    private String longitude;
+    private Double longitude;
 
     @Column
-    private String address;
+    private String hotelAddress;
 
     @Column
     private String hotelPhone;
 
     @Column
     private List<RoomType> roomType;
+
+    @Column
+    private Long distance = 0L;
+
+
 
 }
