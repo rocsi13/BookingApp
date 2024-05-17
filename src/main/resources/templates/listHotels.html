@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotels</title>
+</head>
+<body>
+<section>
+    <div align="center" class="container" style="width: 30rem;" >
+        <img class="card-img-top" src="https://media.istockphoto.com/id/487042276/ro/fotografie/semnul-hotelului.jpg?s=1024x1024&w=is&k=20&c=I2j472mDnxKnxaESVjY6R1zo1iq3b1mPdWj7OCmyBGE=" alt="Card image cap">
+        <div class="card-body">
+            <form method="post" th:action="@{/listHotels}">
+                <table class="table table-light table-hover">
+                    <thead class="table-light">
+                    <tr>
+                        <th>Hotel Name</th>
+                        <th>No of available rooms</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each = "hotel : ${hotels}">
+                        <td th:text = "${hotel.name}"></td>
+                        <td th:text = "${hotel.availableRoomCount}"></td>
+                        <td> <a class="btn btn-info" th:href="@{/booking}" role="button">Book a room</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

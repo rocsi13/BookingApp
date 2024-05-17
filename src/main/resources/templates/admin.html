@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+</head>
+<body>
+<section>
+    <h1>Actions </h1>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <a class="btn btn-info" th:href="@{/addHotel}" role="button">Add hotels</a>
+        </div>
+    </div>
+</section>
+</body>
+</html>

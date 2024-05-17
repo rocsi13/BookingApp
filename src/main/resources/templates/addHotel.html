@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add hotel</title>
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header text-center fs-4">
+                        Register a new hotel
+                    </div>
+                    <div th:if="${param.success}">
+                        <div class="alert alert-info">
+                            You have successfully registered a new hotel!
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form
+                                th:action="@{/addHotel/save}"
+                                th:object="${hotel}"
+                                method="post"
+                                role="form">
+
+                            <div class="form-group">
+                                <label>Hotel name</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="name"
+                                        name="name"
+                                        placeholder="Enter hotel name"
+                                        th:field="*{name}"
+                                        required="required"
+                                />
+                                <p th:errors = "*{name}" class="text-danger"
+                                   th:if="${#fields.hasErrors('name')}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Hotel address</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="address"
+                                        name="address"
+                                        placeholder="Enter hotel address"
+                                        th:field="*{hotelAddresse}"
+                                        required="required"
+                                />
+                                <p th:errors = "*{address}" class="text-danger"
+                                   th:if="${#fields.hasErrors('address')}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Hotel phone</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="hotelPhone"
+                                        name="hotelPhone"
+                                        placeholder="Enter Hotel hotel phone"
+                                        th:field="*{hotelPhone}"
+                                        required="required"
+                                />
+                                <p th:errors = "*{hotelPhone}" class="text-danger"
+                                   th:if="${#fields.hasErrors('hotelPhone')}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Latitude</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="latitude"
+                                        name="latitude"
+                                        placeholder="Enter latitude"
+                                        th:field="*{latitude}"
+                                        required="required"
+                                />
+                                <p th:errors = "*{latitude}" class="text-danger"
+                                   th:if="${#fields.hasErrors('latitude')}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Longitude</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="longitude"
+                                        name="longitude"
+                                        placeholder="Enter longitude"
+                                        th:field="*{longitude}"
+                                        required="required"
+                                />
+                                <p th:errors = "*{longitude}" class="text-danger"
+                                   th:if="${#fields.hasErrors('longitude')}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Available rooms</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="availableRoomCount"
+                                        name="availableRoomCount"
+                                        placeholder="Enter number of rooms"
+                                        th:field="*{availableRoomCount}"
+                                        required="required"
+                                />
+                                <p th:errors = "*{availableRoomCount}" class="text-danger"
+                                   th:if="${#fields.hasErrors('availableRoomCount')}"></p>
+                            </div>
+                            <button
+                                    class="btn btn-primary"
+                                    type="submit">Submit</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
+</body>
+</html>
