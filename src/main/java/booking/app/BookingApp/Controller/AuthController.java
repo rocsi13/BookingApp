@@ -9,7 +9,6 @@ import booking.app.BookingApp.Service.HotelService;
 import booking.app.BookingApp.Service.UserService;
 import com.maxmind.geoip2.record.Location;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Controller
 public class AuthController {
@@ -73,12 +71,6 @@ public class AuthController {
         return "dashboard";
     }
 
-    @GetMapping("/booking")
-    public String booking(){
-        System.out.println("Book a room");
-        return "booking";
-    }
-
     @RequestMapping(value = "/listHotels", method = RequestMethod.GET)
     public String listHotels(Model model){
         model.addAttribute("hotels", hotelService.findAll());
@@ -123,12 +115,7 @@ public class AuthController {
         location.setTimestamp(LocalDateTime.now());
         return userLocationRepository.save(location);
     }
-    @GetMapping("/listHotels")
-    public String getNearestHotel(@RequestParam double latitude, @RequestParam double longitude, Model model) {
-        List<Hotel> nearestHotel = hotelService.findNearestHotel(latitude, longitude);
-        model.addAttribute("hotels", nearestHotel);
-        return "listHotels";
-    }
+
 
 
 

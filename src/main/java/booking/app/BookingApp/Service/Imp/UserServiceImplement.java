@@ -1,15 +1,15 @@
 package booking.app.BookingApp.Service.Imp;
 
-import booking.app.BookingApp.Model.*;
+import booking.app.BookingApp.Model.Role;
+import booking.app.BookingApp.Model.User;
+import booking.app.BookingApp.Model.UserDto;
 import booking.app.BookingApp.Repository.RoleRepository;
-import booking.app.BookingApp.Repository.UserLocationRepository;
 import booking.app.BookingApp.Repository.UserRepository;
 import booking.app.BookingApp.Service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Service
 public class UserServiceImplement implements UserService {

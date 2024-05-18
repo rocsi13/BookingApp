@@ -6,4 +6,5 @@ import booking.app.BookingApp.Model.UserDto;
 public interface UserService {
     void saveUser(UserDto userDto);
     User findByEmail(String email);
+
 }

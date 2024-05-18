@@ -3,10 +3,12 @@ package booking.app.BookingApp.Repository;
 import booking.app.BookingApp.Model.Hotel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import java.util.Optional;
 
 public interface HotelRepository extends JpaRepository <Hotel, Long> {
     Hotel findByName(String name);
-    List<Hotel> findNearestHotel(double userLocationLatitude, double userLocationLongitude);
+    static Optional<Hotel> findHotel(Long hotelId) {
+        return null;
+    }
 
 }
