@@ -115,9 +115,4 @@ public class AuthController {
         location.setTimestamp(LocalDateTime.now());
         return userLocationRepository.save(location);
     }
-
-
-
-
-
 }
