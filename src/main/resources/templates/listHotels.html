@@ -22,7 +22,7 @@
                     <tbody>
                     <tr th:each = "hotel : ${hotels}">
                         <td th:text = "${hotel.name}"></td>
-                        <td th:text = "${hotel.distance}"></td>
+                        <td th:text = "${distance}"></td>
                         <td> <a class="btn btn-info" th:href="@{/booking}" role="button">Book a room</a></td>
                     </tr>
                     </tbody>
@@ -31,5 +31,11 @@
         </div>
     </div>
 </section>
+    <script>
+        navigator.geolocation.getCurrentPosition(function(position) {
+            document.getElementById('latitude').value = position.coords.latitude;
+            document.getElementById('longitude').value = position.coords.longitude;
+        });
+    </script>
 </body>
 </html>

@@ -7,11 +7,36 @@
 </head>
 <body>
 <section>
+    <div class="container">
     <h1><font color="white">Available hotels in your region</font></h1>
-
+        <form method="post" th:action="@{/booking}">
+            <table class="table table-light table-hover">
+                <thead class="table-light">
+                <tr>
+                    <th>Hotel Name</th>
+                    <th>Distance from user</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each = "hotel : ${hotels}">
+                    <td th:text = "${hotel.name}"></td>
+                    <td th:text = "${hotel.distance}"></td>
+                    <td> <a class="btn btn-info" th:href="@{/booking}" role="button">Book a room</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
 
 
     </div>
 </section>
+    <script>
+        navigator.geolocation.getCurrentPosition(function(position) {
+            document.getElementById('latitude').value = position.coords.latitude;
+            document.getElementById('longitude').value = position.coords.longitude;
+        });
+    </script>
 </body>
+
 </html>
