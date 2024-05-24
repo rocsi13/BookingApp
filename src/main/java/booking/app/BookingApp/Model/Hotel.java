@@ -39,7 +39,7 @@ public class Hotel {
     private List<RoomType> roomType;
 
     @Column
-    private Long distance = 0L;
+    private Double distance = 0D;
 
 
 

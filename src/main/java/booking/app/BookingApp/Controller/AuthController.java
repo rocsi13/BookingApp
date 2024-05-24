@@ -7,7 +7,6 @@ import booking.app.BookingApp.Model.UserLocation;
 import booking.app.BookingApp.Repository.UserLocationRepository;
 import booking.app.BookingApp.Service.HotelService;
 import booking.app.BookingApp.Service.UserService;
-import com.maxmind.geoip2.record.Location;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +38,7 @@ public class AuthController {
     @GetMapping("/login")
     public String loginForm() {
         System.out.println("loginForm");
+
         return "login";
     }
 
@@ -51,7 +51,7 @@ public class AuthController {
     @PostMapping("/register/save")
     public String registration(@ModelAttribute("user") UserDto user,
                                BindingResult result,
-                               Model model){
+                               Model model) {
         User existing = userService.findByEmail(user.getEmail());
         System.out.println("registration");
         if (existing != null) {
@@ -66,15 +66,14 @@ public class AuthController {
         return "login";
     }
     @GetMapping("/dashboard")
-    public String dashboard(){
+    public String dashboard() {
         System.out.println("dashboard");
         return "dashboard";
     }
 
     @RequestMapping(value = "/listHotels", method = RequestMethod.GET)
-    public String listHotels(Model model){
+    public String listHotels(Model model) {
         model.addAttribute("hotels", hotelService.findAll());
-
         System.out.println("Hotels");
         return "listHotels";
     }
@@ -107,12 +106,19 @@ public class AuthController {
     }
 
     @PostMapping("/userlocation")
-    public UserLocation updateUserLocation(@RequestBody Location request, Principal principal) {
+    public UserLocation updateUserLocation(@RequestBody UserLocation request, Principal principal) {
         User user = userService.findByEmail(principal.getName());
         UserLocation location = new UserLocation();
         location.setLatitude(request.getLatitude());
         location.setLongitude(request.getLongitude());
         location.setTimestamp(LocalDateTime.now());
         return userLocationRepository.save(location);
+    }
+
+    @RequestMapping(value = "/booking", method = RequestMethod.GET)
+    public String booking(Model model) {
+        model.addAttribute("hotels", hotelService.findAll());
+        System.out.println("Booking");
+        return "booking";
     }
 }

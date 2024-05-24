@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<section>
+    <div class="container" sec:authorize="hasAnyAuthority('ADMIN', 'USER')">
+        <form method="post" th:action="@{/userlocation}">
+            <div class="row">
+                <div class="card">
+                    <tr th:each="userLocations : ${user_locations}">
+                        <div class="card custom-card text-center mr-2 mt-2 ml-2 mb-2"
+                             style="width: 15rem; display: inline-block">
+                            <div class="card-body">
+                                <p class="card-text" th:text="${userLocations.longitude}">Longitude</p>
+                                <p class="card-text" th:text="${userLocations.latitude}">Latitude</p>
+
+                            </div>
+                        </div>
+                    </tr>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</section>
+</body>
+</html>
