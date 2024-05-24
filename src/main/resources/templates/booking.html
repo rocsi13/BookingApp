@@ -30,10 +30,14 @@
     </div>
 </section>
     <script>
-        navigator.geolocation.getCurrentPosition(function(position) {
-            document.getElementById('latitude').value = position.coords.latitude;
-            document.getElementById('longitude').value = position.coords.longitude;
-        });
+        var requestOptions = {
+            method: 'GET',
+        };
+
+        fetch("https://api.geoapify.com/v1/ipinfo?&apiKey=2918a1c98d8d42cea35032478fd88342", requestOptions)
+        .then(response => response.json())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
     </script>
 </body>
 

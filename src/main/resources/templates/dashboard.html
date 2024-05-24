@@ -6,11 +6,21 @@
   <title>Home</title>
 </head>
 <body>
-<section>
-  <div class="container" sec:authorize="hasAnyAuthority('ADMIN', 'USER')">
-    <H1>Hello</H1>
+  <section>
+    <div class="container" sec:authorize="hasAnyAuthority('ADMIN', 'USER')">
+      <H1>Hello</H1>
 
-  </div>
-</section>
+    </div>
+  </section>
+  <script>
+        var requestOptions = {
+          method: 'GET',
+        };
+
+        fetch("https://api.geoapify.com/v1/ipinfo?&apiKey=2918a1c98d8d42cea35032478fd88342", requestOptions)
+          .then(response => response.json())
+          .then(result => console.log(result))
+          .catch(error => console.log('error', error));
+    </script>
 </body>
 </html>
