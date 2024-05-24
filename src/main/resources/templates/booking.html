@@ -5,30 +5,28 @@
     <meta charset="UTF-8">
     <title>Hotels in your region</title>
 </head>
+
 <body>
 <section>
     <div class="container">
     <h1><font color="white">Available hotels in your region</font></h1>
         <form method="post" th:action="@{/booking}">
-            <table class="table table-light table-hover">
-                <thead class="table-light">
-                <tr>
-                    <th>Hotel Name</th>
-                    <th>Distance from user</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each = "hotel : ${hotels}">
-                    <td th:text = "${hotel.name}"></td>
-                    <td th:text = "${hotel.distance}"></td>
-                    <td> <a class="btn btn-info" th:href="@{/booking}" role="button">Book a room</a></td>
-                </tr>
-                </tbody>
-            </table>
+
+                <div class="card bg-light mb-3 inline-block">
+                    <tr th:each="hotel : ${hotels}">
+                        <div class="card custom-card text-center mr-2 mt-2 ml-2 mb-2"
+                             style="width: 15rem; display: inline-block">
+                            <div class="card-body">
+                                <p class="card-text" th:text="${hotel.name}">Name</p>
+                                <p class="card-text" th:text="${hotel.hotelAddress}">Address</p>
+                                <p class="card-text" th:text="${hotel.hotelPhone}">Phone</p>
+                                <button class="btn btn-info" th:action="submit">Book here!</button>
+                            </div>
+                        </div>
+                    </tr>
+                </div>
+
         </form>
-
-
     </div>
 </section>
     <script>

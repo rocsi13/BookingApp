@@ -22,7 +22,7 @@
                     <tbody>
                     <tr th:each = "hotel : ${hotels}">
                         <td th:text = "${hotel.name}"></td>
-                        <td th:text = "${distance}"></td>
+                        <td th:text = "${hotel.distance}"></td>
                         <td> <a class="btn btn-info" th:href="@{/booking}" role="button">Book a room</a></td>
                     </tr>
                     </tbody>

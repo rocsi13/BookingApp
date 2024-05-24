@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Getter
@@ -14,16 +15,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "user_locations")
-public class UserLocation {
+public class UserLocation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     private Long userId;
     @Column
-    private double latitude;
+    private Double latitude;
     @Column
-    private double longitude;
+    private Double longitude;
     @Column
     private LocalDateTime timestamp;
 
